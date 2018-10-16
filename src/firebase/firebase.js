@@ -11,13 +11,21 @@ const config = {
 
 firebase.initializeApp(config);
 
-firebase.ref().set({
-  name: 'Toni',
-  age: 32,
-  likes: {}
-});
+const database = firebase.database();
 
-firebase
-  .database()
-  .ref('age')
-  .set(33);
+database
+  .ref()
+  .set({
+    name: 'Toni2',
+    age: 32,
+    location: {
+      city: 'St Augustine',
+      state: 'FL'
+    }
+  })
+  .then(() => {
+    console.log('Created DB object');
+  })
+  .catch((e) => {
+    console.log('Something went wrong', e);
+  });
